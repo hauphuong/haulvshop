@@ -23,6 +23,7 @@ namespace HaulvShop.Model.Models
         [Required]
         public int GroupID { set; get; }
 
+        //de lien ket den bang cha
         [ForeignKey("GroupID")]
         public virtual MenuGroup MenuGroup { set; get; }
 
