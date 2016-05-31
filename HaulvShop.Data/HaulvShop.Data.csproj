@@ -50,6 +50,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBContext.cs" />
+    <Compile Include="HaulvShopDbContext.cs" />
+    <Compile Include="Infrastucture\DbFactory.cs" />
+    <Compile Include="Infrastucture\Disposable.cs" />
+    <Compile Include="Infrastucture\IDbFactory.cs" />
+    <Compile Include="Infrastucture\IRepository.cs" />
+    <Compile Include="Infrastucture\IUnitOfWork.cs" />
+    <Compile Include="Infrastucture\RepositoryBase.cs" />
+    <Compile Include="Infrastucture\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +70,13 @@
       <Project>{24f622b8-5ea5-4329-aefa-25bc3c0827e2}</Project>
       <Name>HaulvShop.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HaulvShop.Model\HaulvShop.Model.csproj">
+      <Project>{235f04a8-df9a-441f-95f8-a60f26ead7f4}</Project>
+      <Name>HaulvShop.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Repositories\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

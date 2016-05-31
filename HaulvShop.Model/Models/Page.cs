@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using HaulvShop.Model.Abstract;
 
-namespace TeduShop.Model.Models
+namespace HaulvShop.Model.Models
 {
     [Table("Pages")]
     public class Page : Auditable
