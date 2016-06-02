@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using HaulvShop.Model.Abstract;
+using System.Collections.Generic;
 
 namespace HaulvShop.Model.Models
 {
@@ -37,5 +38,7 @@ namespace HaulvShop.Model.Models
 
         [ForeignKey("CategoryID")]
         public virtual PostCategory PostCategory { set; get; }
+
+        public virtual IEnumerable<PostTag> PostTags { set; get; }
     }
 }
