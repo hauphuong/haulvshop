@@ -2,8 +2,8 @@
 using HaulvShop.Model.Models;
 
 namespace HaulvShop.Data.Repositories
-{
-    public interface IProductRepository
+{ 
+    public interface IProductRepository : IRepository<Product>
     {
     }
 

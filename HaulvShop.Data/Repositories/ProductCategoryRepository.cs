@@ -1,18 +1,19 @@
-﻿using HaulvShop.Data.Infrastructure;
-using HaulvShop.Model.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using HaulvShop.Data.Infrastructure;
+using HaulvShop.Model.Models;
 
 namespace HaulvShop.Data.Repositories
 {
-    public interface IProductCategoryRepository
+    public interface IProductCategoryRepository : IRepository<ProductCategory>
     {
         IEnumerable<ProductCategory> GetByAlias(string alias);
     }
 
     public class ProductCategoryRepository : RepositoryBase<ProductCategory>, IProductCategoryRepository
     {
-        public ProductCategoryRepository(IDbFactory dbFactory) : base(dbFactory)
+        public ProductCategoryRepository(IDbFactory dbFactory)
+            : base(dbFactory)
         {
         }
 
