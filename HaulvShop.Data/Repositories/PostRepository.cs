@@ -1,6 +1,8 @@
-﻿using HaulvShop.Data.Infrastructure;
-using HaulvShop.Model.Models;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using HaulvShop.Data.Infrastructure;
+using HaulvShop.Model.Models;
 using System.Linq;
 
 namespace HaulvShop.Data.Repositories
@@ -21,11 +23,14 @@ namespace HaulvShop.Data.Repositories
             var query = from p in DbContext.Posts
                         join pt in DbContext.PostTags
                         on p.ID equals pt.PostID
-                        where pt.TagID == tag && p.Status 
+                        where pt.TagID == tag && p.Status
                         orderby p.CreatedDate descending
                         select p;
+
             totalRow = query.Count();
+
             query = query.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+
             return query;
         }
     }

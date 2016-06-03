@@ -1,7 +1,9 @@
-﻿using HaulvShop.Data.Infrastructure;
+﻿using System;
+using System.Collections.Generic;
+using HaulvShop.Data.Infrastructure;
 using HaulvShop.Data.Repositories;
 using HaulvShop.Model.Models;
-using System.Collections.Generic;
+using System.Linq;
 
 namespace HaulvShop.Service
 {
@@ -17,7 +19,7 @@ namespace HaulvShop.Service
 
         IEnumerable<Post> GetAllPaging(int page, int pageSize, out int totalRow);
 
-        IEnumerable<Post> GetAllByCategoryPaging(int page, int pageSize, out int totalRow);
+        IEnumerable<Post> GetAllByCategoryPaging(int categoryId, int page, int pageSize, out int totalRow);
 
         Post GetById(int id);
 
@@ -28,8 +30,8 @@ namespace HaulvShop.Service
 
     public class PostService : IPostService
     {
-        private IPostRepository _postRepository;
-        private IUnitOfWork _unitOfWork;
+        IPostRepository _postRepository;
+        IUnitOfWork _unitOfWork;
 
         public PostService(IPostRepository postRepository, IUnitOfWork unitOfWork)
         {
@@ -59,8 +61,9 @@ namespace HaulvShop.Service
 
         public IEnumerable<Post> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow)
         {
-            //TODO: select all post by tag
+            //TODO: Select all post by tag
             return _postRepository.GetAllByTag(tag, page, pageSize, out totalRow);
+
         }
 
         public IEnumerable<Post> GetAllPaging(int page, int pageSize, out int totalRow)
