@@ -5,13 +5,12 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-
 namespace HaulvShop.Web.Api
 {
     [RoutePrefix("api/postcategory")]
     public class PostCategoryController : ApiControllerBase
     {
-        private IPostCategoryService _postCategoryService;
+        IPostCategoryService _postCategoryService;
 
         public PostCategoryController(IErrorService errorService, IPostCategoryService postCategoryService) : base(errorService)
         {
@@ -22,18 +21,10 @@ namespace HaulvShop.Web.Api
         public HttpResponseMessage Get(HttpRequestMessage request)
         {
             //ham nac danh
-            HttpResponseMessage respone = null;
             return CreateHttpResponse(request, () =>
             {
-                if (ModelState.IsValid)
-                {
-                    request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-                }
-                else
-                {
-                    var listCategory = _postCategoryService.GetAll();
-                    respone = request.CreateResponse(HttpStatusCode.OK, listCategory);
-                }
+                var listCategory = _postCategoryService.GetAll();
+                HttpResponseMessage respone = request.CreateResponse(HttpStatusCode.OK, listCategory);
                 return respone;
             });
         }
