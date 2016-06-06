@@ -1,4 +1,5 @@
 ﻿using HaulvShop.Model.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HaulvShop.Data
 {
-    public class HaulvShopDbContext : DbContext
+    public class HaulvShopDbContext : IdentityDbContext<ApplicationUser>
     {
         public HaulvShopDbContext():base("HaulvShopConnectionString")
         {
@@ -35,9 +36,15 @@ namespace HaulvShop.Data
 
         public DbSet<Error> Errors { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        public static HaulvShopDbContext Create()
         {
-            base.OnModelCreating(modelBuilder);
+            return new HaulvShopDbContext();
+        }
+
+        protected override void OnModelCreating(DbModelBuilder builder)
+        {
+            builder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId });
+            builder.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
         }
 
     }
